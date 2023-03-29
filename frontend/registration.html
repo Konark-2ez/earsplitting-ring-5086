@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+    <title>FurnStock</title>
+</head>
+<body>
+    <header>
+        <p>Ships to: <img src="https://img.icons8.com/external-justicon-flat-justicon/1x/external-india-flag-countrys-flags-justicon-flat-justicon.png" alt="flag"> India </p>
+    </header>
+    <nav id="nav" class="navbar navbar-expand-lg navbar bg-white border border-primary sticky-top">
+        <div class="container-fluid">
+         
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html"><img id="image" src="./image/FurnStock.png" alt="FurnStock"  width="50" height="54"></a>
+          <form class="d-flex" role="search" id="search"  style="border-color: blue;">
+            <input class="form-control me-2" type="search" style="background-color: rgb(227, 227, 227);" placeholder="Search...everything you find ships for free" aria-label="Search">
+            <button class="btn btn-outline-danger" style="background-color: red;color: white;" type="submit">Search</button>
+          </form>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                <a class="nav-link" aria-current="page" href="./registration.html"><img src="https://img.icons8.com/ios/1x/user.png" alt="person" height="24"></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="./"><img src="https://img.icons8.com/ios/256/hearts--v1.png" alt="wish" height="24"></a>
+              </li>
+             
+              <li class="nav-item">
+                <a class="nav-link" href="./cart.html"><img src="https://img.icons8.com/fluency-systems-regular/1x/shopping-cart.png" alt="cart"></a>
+              </li>
+              
+              
+            </ul>
+          
+          </div>
+        </div>
+      </nav>
+      <br>
+      <br>
+      <br>
+       <div id="form">
+        <div id="spinner">
+            <div class="spinner-inner"></div>
+          </div>
+        <div style="position: absolute;z-index: 999;top:30;left: 20;border: 1px solid black;width: 30%;height: 30%;border-radius: 10px;background-color: rgb(246, 244, 244);display: none;text-align: center;color: rgb(9, 9, 9);font-weight: 800;" id="error" >
+            Please fill in all fields.
+            <br>
+            You cannot proceed without filling all the details
+            <button id="disable">Close</button>
+          </div>
+        <div class="register">
+            
+            <p><img src="https://img.icons8.com/external-tanah-basah-glyph-tanah-basah/1x/external-add-user-social-media-ui-tanah-basah-glyph-tanah-basah.png" alt=""> Create Account</p>
+            <form action="/register" id="reg" method="post">
+                <input type="text" name="name" id="regName" placeholder="Enter your name">
+                <input type="email" name="email" id="regEmail" placeholder="Enter your email">
+                <input type="password" name="password" id="regPassword" placeholder="Enter your password">
+                <input type="submit" class="submit" id="submit" value="Submit">
+            </form>
+          </div>
+          <div class="vl"></div>
+          <div class="login">
+            <p><img src="https://img.icons8.com/material-sharp/1x/guest-male.png" alt=""> Login to Account</p>
+            <form action="/login" id="log" method="post">
+                <input type="email" name="email" id="email" placeholder="Enter your email">
+                <input type="password" name="password" id="password" placeholder="Enter your password">
+                <input type="submit" class="submit" value="Submit">
+            </form>
+          </div>
+       </div>
+       <br><br>
+      <div class="text">
+        <p>
+            *By creating an account, you agree to our <br>
+            Terms & Conditions and Privacy Policy.
+        </p>
+      </div>
+    
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+<script>
+    //registration 
+    let regForm = document.getElementById("reg")
+    let regName = document.getElementById("regName")
+    let regEmail = document.getElementById("regEmail")
+    let regPassword =  document.getElementById("regPassword")
+    let close = document.getElementById("disable")
+    const spinner = document.getElementById("spinner")
+    regForm.addEventListener("submit",(e)=>{
+        e.preventDefault()
+
+        let payload={
+            name : regName.value,
+            email : regEmail.value,
+            password : regPassword.value
+        }
+       
+
+        regFetch(payload)
+    })
+
+   async function regFetch(payload) {
+    // create and show the spinner
+       
+
+        if (!payload.name || !payload.email || !payload.password) {
+    // Show the error message
+    document.getElementById("error").style.display = "block";
+    return;
+  }
+  spinner.style.display = "block"
+  
+ 
+   
+        
+       await fetch("http://localhost:5050/user/register",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(payload)
+        })
+        .then((res)=>res.json())
+        .then(res => {
+  console.log(res.status);
+  if (res.msg === "User is registered") {
+    spinner.style.display = "none"
+    // show the success message
+    const successDialog = document.createElement("div");
+    successDialog.innerHTML = "Successfully registered!";
+    successDialog.style.backgroundColor = "green";
+    successDialog.style.color = "white";
+    successDialog.style.padding = "10px";
+    successDialog.style.position = "fixed";
+    successDialog.style.top = "80px"; // set the dialog at the top
+    successDialog.style.left = "50%"; // center the dialog horizontally
+    successDialog.style.transform = "translateX(-50%)"; // center the dialog horizontally
+    successDialog.style.zIndex = "9999";
+    document.body.appendChild(successDialog);
+
+    // remove the success dialog after 3 seconds
+    setTimeout(() => {
+      successDialog.remove();
+    }, 3000);
+  }
+})
+
+        .catch(err=>console.log(err))
+    }
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+    //Login
+    let logForm = document.getElementById("log")
+    let email = document.getElementById("email")
+    let password = document.getElementById("password")
+
+
+    logForm.addEventListener("submit",(e)=>{
+        e.preventDefault()
+
+        let payload={
+            
+            email : email.value,
+            password : password.value
+        }
+       fetched(payload)
+    })
+     
+
+
+    function fetched(payload) {
+        
+        if (!payload.email || !payload.password) {
+    // Show the error message
+    document.getElementById("error").style.display = "block";
+    return;
+  }
+   
+  spinner.style.display = "block"
+        fetch("http://localhost:5050/user/login",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify(payload)
+        })
+        .then((res)=>res.json())
+        .then(res => {
+  console.log(res);
+  if (res.msg === "Login is succesful") {
+    spinner.style.display = "none"
+    // show the success message
+    const dialog = document.createElement("div");
+    dialog.innerHTML = "Successfully logged in!";
+    dialog.style.backgroundColor = "green";
+    dialog.style.color = "white";
+    dialog.style.padding = "10px";
+    dialog.style.position = "fixed";
+    dialog.style.top = "20px"; // set the dialog at the top
+    dialog.style.left = "50%"; // center the dialog horizontally
+    dialog.style.transform = "translateX(-50%)"; // center the dialog horizontally
+    dialog.style.zIndex = "9999";
+    document.body.appendChild(dialog);
+
+    // remove the success dialog after 3 seconds
+    setTimeout(() => {
+     dialog.remove();
+    }, 3000);
+  }
+  localStorage.clear()
+  localStorage.setItem("token",res.token)
+})
+
+        .catch(err=>console.log(err))
+    }
+
+  
+
+    close.addEventListener("click",()=>{
+    document.getElementById("error").style.display = "none";
+   })
+</script>
+</html>
