@@ -2,10 +2,13 @@
     margin:0;
     padding: 0;
     overflow-x: hidden;
+    box-sizing: border-box;
 }
 header{
+    background-color: white;
     padding-left: 2%;
     height: 4vh;
+    overflow: hidden;
 }
 header>p{
     color: rgb(131, 131, 131);
@@ -14,9 +17,7 @@ header>p{
 header>p>img{
     height: 3vh;
 }
-#nav{
-    border-color:#000566!important;
-}
+
 #image{
     height: 10%;
 }
@@ -180,3 +181,301 @@ header>p>img{
       transform: rotate(360deg);
     }
   }
+
+  .bar{
+    background-color: #0d6ffc;
+    border:1px solid black;
+    border-top:transparent;
+    border-right: transparent;
+    border-left: transparent;
+    width: 100%;
+    height: 5vh;
+    display: flex;
+    justify-content: space-around;
+  }
+  .bar>a{
+    text-decoration: none;
+    color: white;
+  }
+  .image {
+    margin-bottom: 10%;
+    position: relative;
+    width: 90%;
+    margin: auto;
+  }
+  
+  .image h1 {
+    overflow: hidden;
+    font-size: 4rem;
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+  .image h2{
+    overflow: hidden;
+    line-break: normal;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+  
+  .image h1 span {
+   font-size: 4rem;
+  }
+  
+  .image button {
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  .image img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  .image2 {
+  
+    position: relative;
+    width: 90%;
+    margin: auto;
+  }
+  
+  .image2 h1 {
+    overflow: hidden;
+    font-size: 4rem;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+  .image2 h2{
+    overflow: hidden;
+    line-break: normal;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 60%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+  
+ 
+  
+  .image2 button {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  .image2 img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  
+  .image3 {
+  
+    position: relative;
+    width: 90%;
+    margin: auto;
+  }
+  
+  .image3 h1 {
+    overflow: hidden;
+    font-size: 4rem;
+    position: absolute;
+    top: 30%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+  .image3 h2{
+    overflow: hidden;
+    line-break: normal;
+    font-size: 2.5rem;
+    position: absolute;
+    top: 60%;
+    left: 15%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-align: center;
+  }
+  
+ 
+  
+  .image3 button {
+    position: absolute;
+    bottom: 10%;
+    left: 10%;
+    transform: translateX(-50%);
+    background-color: red;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  
+  .image3 img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+  #co{
+    background-color: azure;
+  }
+  #co h2, #co h4{
+    overflow: hidden;
+  }
+  #co a{
+    overflow: hidden;
+    text-decoration: none;
+    color: #660033;
+  }
+  #co a:hover{
+  
+    padding: 20%;
+    border-left:4px solid black;
+         background-color: rgb(150, 147, 142);
+  }
+ .read{
+    padding-left: 1.2%;
+    width: 90%;
+    height: 60vh;
+    
+    display:flex;
+    margin: auto;
+ }
+ .read2{
+    padding-left: 1.2%;
+    width: 90%;
+    height: 60vh;
+  
+    display:flex;
+    margin: auto;
+ }
+ .read>div{
+    width: 90%;
+    height: 100%;
+ }
+ .read img{
+    width: 90%;
+    height: 100%;
+ }
+ .read2>div{
+    width: 90%;
+    height: 100%;
+ }
+ .read2 img{
+    width: 100%;
+    height: 100%;
+ }
+ .read h2{
+    overflow: hidden;
+ }
+ .read2 h2{
+    overflow: hidden;
+ }
+
+ 
+ footer{
+    width: 100%;
+    height: 80vh;
+    border: 1px solid red;
+ }
+ #c:hover{
+    display: block;
+ }
+ #field img:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+ }
+ #fild img:hover{
+    cursor: pointer;
+    transform: scale(1.2);
+ }
+ #new1{
+    
+    display: none;
+ }
+ #new2{
+    display: none;
+ }
+ #new3{
+    display: none;
+ }
+
+ #secondContainer{
+ 
+  display: flex;
+flex-direction: column;
+ }
+ #container{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 10px;
+ }
+ @media  screen and (max-width:990px) {
+    #new1{
+       
+        display: block;
+    }
+    #new1 a{
+        color: white;
+    }
+    #new2{
+        display: block;
+    }
+    #new2 a{
+        color: white;
+    }
+    #new3{
+        display: block;
+    }
+    #new3 a{
+        color: white;
+    }
+    .bar{
+        display: none;
+    }
+    #form{
+        text-align: center;
+        align-items: center;
+        height: 90vh;
+        margin: auto;
+        flex-direction: column;
+    }
+    .vl{
+        display: none;
+    }
+    
+ }
+ 
