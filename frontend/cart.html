@@ -67,7 +67,276 @@
         <a href="#">Ideas</a>
         <a href="#">Sales & Deals</a>
        </div>
+       <div id="spinner">
+        <div class="spinner-inner"></div>
+      </div>
+       <div class="container text-center">
+        <div class="row">
+          <div class="col-lg">
+            <div id="container">
+             
+            </div>
+          </div>
+          <div class="col-lg">
+            <div id="checkout" style="border:1px solid rgb(172, 170, 170);height: 50vh;overflow: hidden;padding: 1.5%;">
+              <h3 style="text-align: center;overflow: hidden;color: rgb(148, 54, 207);">Check-Out</h3>
+              <p><span class="left">Your current bill:</span><span class="right" id="span"></span></p>
+              <p><span class="left">Shipping Charges:</span><span class="right">INR 200</span></p>
+              <p><span class="left">Worker Charges:</span><span class="right">INR 500</span></p>
+              <hr>
+              <p><span class="left">Total Bill:</span><span class="right" id="bill"></span></p>
+              <br>
+              <button id="check">CheckOut</button>
+
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      <footer>
+        <div class="container text-center">
+          <div class="row">
+            <div class="col-md">
+              <h4>My Account</h4>
+                <ul>
+                  <li>Orders</li>
+                  <li>Email</li>
+                  <li>Account</li>
+                  
+                </ul>
+            </div>
+            <div class="col-md">
+              <h4>Let us help</h4>
+              <ul>
+                <li>Contact</li>
+                <li>Customer Care</li>
+                <li>Shoppping</li>
+                <li>Return Policy</li>
+                <li>Accessibility</li>
+                
+              </ul>
+            </div>
+            <div class="col-md">
+              <h4>Let us help</h4>
+              <ul>
+                <li>Contact</li>
+                <li>Customer Care</li>
+                <li>Shoppping</li>
+                <li>Return Policy</li>
+                <li>Accessibility</li>
+                
+              </ul>
+            </div>
+            <div class="col-md">
+              <h4>Let us help</h4>
+              <ul>
+                <li>Contact</li>
+                <li>Customer Care</li>
+                <li>Shoppping</li>
+                <li>Return Policy</li>
+                <li>Accessibility</li>
+                
+              </ul>
+            </div>
+          </div>
+        </div>
+       </footer>
+    
+    
+      <section>
+        &copy; Copyright 2023, FurnStock.com®, Inc.
+      </section>
+    
     
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
+<script>
+  let container = document.getElementById("container")
+  const spinner = document.getElementById("spinner")
+  let span = document.getElementById("span")
+  let bill = document.getElementById("bill")
+
+  const btn = document.getElementById("check")
+  const modal = document.getElementById("modal")
+
+  btn.addEventListener("click",()=>{
+    modal.style.display = "block"
+  })
+  modal.addEventListener("click", function() {
+  modal.style.display = "none";
+});
+  window.addEventListener("load",()=>{
+    fetched()
+  })
+
+  async function fetched() {
+    spinner.style.display = "block"
+   await  fetch("http://localhost:5050/furnitre/",{
+    headers:{
+      "Content-Type":"application/json",
+      "Authorization":`Bearer ${localStorage.getItem("token")}`
+    }
+  })
+  .then((res)=>res.json())
+  .then((res)=>{
+    spinner.style.display = "none"
+    console.log(res)
+    display(res)
+  })
+  .catch(err=>console.log(err))
+  }
+
+  function display(data) {
+    let totalPrice = 0;
+    data.forEach(element => {
+      const card = document.createElement("div")
+          card.setAttribute("class","card")
+
+          const itemPrice = element.cost * element.quantity; // calculate the price of this item
+          totalPrice += itemPrice;
+
+          const image = document.createElement("img")
+          image.setAttribute("src",element.link)
+          image.style.height = "40%"
+
+          const cost  = document.createElement("p")
+          cost.innerText = `INR ${element.cost}/-`
+          cost.style.color = "red"
+          cost.style.fontSize="1.2rem"
+          
+          const div = document.createElement("div")
+          div.setAttribute("id","divs")
+          div.style.display = "flex"
+          div.style.justifyContent = "space-around"
+          
+          
+          let quantity = document.createElement("p")
+          quantity.innerText = `Quantity: ${Number(element.quantity)}`
+          
+          const increment = document.createElement("button")
+          const decrement = document.createElement("button")
+          const remove = document.createElement("button")
+          
+          increment.textContent = "+"
+          decrement.textContent = "-"
+          remove.textContent = "Remove"
+          
+          increment.style.width = "30%"
+          increment.style.backgroundColor = "blue"
+          increment.style.color = "white"
+          increment.style.borderColor = "transparent"
+          increment.style.borderRadius = "5px"
+          decrement.style.width = "30%"
+          decrement.style.backgroundColor = "blue"
+          decrement.style.color = "white"
+          decrement.style.borderColor = "transparent"
+          decrement.style.borderRadius = "5px"
+          increment.style.marginBottom = "5%"
+          decrement.style.marginBottom = "5%"
+
+
+          remove.style.backgroundColor = "red"
+          remove.style.color = "white"
+          remove.style.borderColor = "transparent"
+          remove.style.width = "50%"
+          remove.style.margin = "auto"
+
+
+           //increment
+         increment.addEventListener("click", () => {
+  console.log("Before increment:", element.quantity);
+  element.quantity++;
+  console.log("After increment:", element.quantity);
+
+  fetch(`http://localhost:5050/furnitre/update/${element._id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
+    body: JSON.stringify({
+      quantity: element.quantity
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("Quantity updated in the backend:", data);
+
+    fetched()
+    location.reload()
+  })
+  .catch(err => console.log(err));
+});
+
+
+decrement.addEventListener("click", () => {
+  console.log("Before increment:", element.quantity);
+  element.quantity--;
+  console.log("After increment:", element.quantity);
+
+  fetch(`http://localhost:5050/furnitre/update/${element._id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    },
+    body: JSON.stringify({
+      quantity: element.quantity
+    })
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("Quantity updated in the backend:", data);
+
+    fetched()
+    location.reload()
+  })
+  .catch(err => console.log(err));
+});
+
+
+remove.addEventListener("click", () => {
+ 
+
+  fetch(`http://localhost:5050/furnitre/delete/${element._id}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${localStorage.getItem("token")}`
+    }
+   
+  })
+  .then(res => res.json())
+  .then(data => {
+    console.log("Quantity deleted in the backend:", data);
+
+    fetched()
+    location.reload()
+  })
+  .catch(err => console.log(err));
+});
+
+
+         
+
+        
+           div.append(increment,decrement)
+          card.append(image,cost,quantity,div,remove)
+          container.append(card)
+
+
+
+      });
+      const total = document.createElement("p");
+  total.innerText = `INR ${totalPrice}/-`;
+  span.append(total)
+
+  const bil= (200+500+totalPrice)
+  console.log(bil)
+  bill.innerText = `INR ${bil}/-`
+ 
+     
+  }
+
+</script>
 </html>

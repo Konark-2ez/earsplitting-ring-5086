@@ -4,6 +4,7 @@ const livSchema = mongoose.Schema({
   cost:Number,
   rating:Number,
   desciption:String,
+  quantity:Number,
   userID:String
 
 },{
