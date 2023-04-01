@@ -216,12 +216,13 @@ header>p>img{
     color: white;
     text-align: center;
   }
-  .image h2{
+  
+  .image h2 {
     overflow: hidden;
     line-break: normal;
     font-size: 2.5rem;
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     color: white;
@@ -229,8 +230,9 @@ header>p>img{
   }
   
   .image h1 span {
-   font-size: 4rem;
+    font-size: 4rem;
   }
+  
   
   .image button {
     position: absolute;
@@ -459,11 +461,16 @@ flex-direction: column;
   text-align: justify;
   display: grid;
   grid-template-columns: repeat(3,1fr);
-  gap: 10px;
+  gap: 10px 10px;
  }
  #container>.card{
-  padding: 1.2%;
+  padding: 2.2%;
   box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+ }
+ #container>.card>p{
+  overflow: hidden;
+  text-overflow:ellipsis ;
+  white-space: nowrap;
  }
  .left {
   text-align: left;
@@ -475,7 +482,11 @@ flex-direction: column;
   text-align: right;
   display: inline-block;
   width: 150px;
+  float: right;
  
+}
+#checkout{
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
 }
 
 
@@ -492,9 +503,66 @@ flex-direction: column;
   font-weight: 700;
 }
 
+#modal{
+  padding: 1.5%;
+  width: 90%;
+  height: 90%;
+  border: 1px solid black;
+  background-color: rgba(0, 0, 0, .9);
+  position: fixed;
+  top: 5%;
+  left: 5%;
+  z-index: 9999;
+}
+#modal>h4{
+  background: -webkit-linear-gradient(#FF00FF, #00FFFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 5rem;
+  color: white;
+  font-weight:900;
+  text-align: center;
+  overflow: hidden;
+}
+#tick{
+  animation: zoom-in-zoom-out 1s ease infinite;
+}
+@keyframes zoom-in-zoom-out {
+  0% {
+    transform: scale(1, 1);
+  }
+  50% {
+    transform: scale(1.5, 1.5);
+  }
+  100% {
+    transform: scale(1, 1);
+  }
+}
+#hurray{
+  background: -webkit-linear-gradient(#66cf35, #0adebb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+#mod{
+  background: -webkit-linear-gradient(#FF00FF, #00FFFF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 
 
  @media  screen and (max-width:990px) {
+   .image h2{
+    display: none;
+    
+   }
+   .image2 h2{
+    display: none;
+    
+   }
+   .image3 h2{
+    display: none;
+    
+   }
     #new1{
        
         display: block;
@@ -527,6 +595,53 @@ flex-direction: column;
     .vl{
         display: none;
     }
-    
+    #container{
+      grid-template-columns: repeat(2,1fr);
+    }
+    .register>form>.submit{
+      padding: 1.5%;
+      width: 50%;
+    }
+    #sub{
+      padding: 1.5%;
+      width: 50%;
+    }
+ }
+
+ @media  screen and (max-width:550px){
+  .image h1{
+    font-size: 1.4rem;
+  }
+  .image2 h1{
+    display: none;
+  }
+  .image2 button{
+    padding: 1.2%;
+    width:30%;
+    height: 30%;
+    left:50%;
+    top: 50%;
+  }
+  .image3 h1{
+    display: none;
+  }
+  .image3 button{
+    padding: 1.2%;
+    width:30%;
+    height: 30%;;
+    left:50%;
+    top: 50%;
+  }
+  #container{
+    grid-template-columns: repeat(1,1fr);
+  }
+  .register>form>.submit{
+    padding: 1.5%;
+    width: 50%;
+  }
+  #sub{
+    padding: 1.5%;
+    width: 50%;
+  }
  }
  

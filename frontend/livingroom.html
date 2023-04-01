@@ -127,6 +127,7 @@
               </ul>
           </div>
           <div class="col-md">
+            
             <h4>Let us help</h4>
             <ul>
               <li>Contact</li>
@@ -177,6 +178,7 @@
 </body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
 <script>
+   let baseserver = "https://uninterested-gray-dugong.cyclic.app"
     let container = document.getElementById("container")
     const spinner = document.getElementById("spinner")
     
@@ -202,7 +204,7 @@ function getData() {
   spinner.style.display = "block"
   const filters = getFilters();
   const queryString = Object.entries(filters).map(([key, value]) => `${key}=${value}`).join('&');
-  fetch(`http://localhost:5050/product/?${queryString}`)
+  fetch(`${baseserver}/product/?${queryString}`)
     .then((response) => response.json())
     .then((data) => {
       spinner.style.display = "none"
@@ -247,7 +249,7 @@ checkboxes.forEach((checkbox) => {
           add.style.backgroundColor = "green"
           add.style.width = "50%"
           add.style.margin = "auto"
-          add.style.height = "6%"
+          add.style.height = "10%"
           add.style.border = "transparent"
           add.style.color = "white"
           add.addEventListener("click",()=>{
@@ -264,7 +266,7 @@ checkboxes.forEach((checkbox) => {
     }
     function pushItem(link,cost,rating,desciption) {
       console.log(cost)
-      fetch("http://localhost:5050/furnitre/add",{
+      fetch(`${baseserver}/furnitre/add`,{
         method:"POST",
         headers:{
           "Content-Type":"application/json",
