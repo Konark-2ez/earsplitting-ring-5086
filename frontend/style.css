@@ -165,8 +165,10 @@ header>p>img{
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #3807eb;
+    border: 4px solid transparent;
+    border-top: 4px solid #1a07eb;
+    border-bottom: 4px solid #0729eb;
+    border-right: 4px solid #071eeb;
     border-radius: 50%;
     width: 50px;
     height: 50px;
@@ -406,11 +408,25 @@ header>p>img{
  }
 
  
- footer{
+ footer{ 
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  
     width: 100%;
-    height: 80vh;
-    border: 1px solid red;
+    height: 60vh;
+   background-color: rgb(185, 183, 183);
  }
+ footer h4{
+  overflow: hidden;
+ }
+section{
+  width: 100%;
+  height: 5vh;
+  background-color: rgb(117, 117, 117);
+  color: white;
+  text-align: center;
+}
  #c:hover{
     display: block;
  }
@@ -434,15 +450,50 @@ header>p>img{
  }
 
  #secondContainer{
- 
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
   display: flex;
 flex-direction: column;
  }
  #container{
+  padding-left:1.2% ;
+  text-align: justify;
   display: grid;
   grid-template-columns: repeat(3,1fr);
   gap: 10px;
  }
+ #container>.card{
+  padding: 1.2%;
+  box-shadow: rgb(38, 57, 77) 0px 20px 30px -10px;
+ }
+ .left {
+  text-align: left;
+  display: inline-block;
+  width: 150px;
+}
+
+.right {
+  text-align: right;
+  display: inline-block;
+  width: 150px;
+ 
+}
+
+
+#check{
+   border-color: transparent;
+   border-radius: 10px;
+   box-shadow: rgba(16, 237, 8, 0.5) 0px 54px 55px, rgba(16, 237, 8, 0.5) 0px -12px 30px, rrgba(16, 237, 8, 0.5) 0px 4px 6px, rgba(16, 237, 8, 0.5) 0px 12px 13px, rgba(16, 237, 8, 0.5) 0px -3px 5px;
+  margin: auto;
+  width: 40%;
+  height: 15%;
+  background-color: green;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+
+
  @media  screen and (max-width:990px) {
     #new1{
        

@@ -15,11 +15,13 @@ proRouter.post("/add",async(req,res)=>{
 })
 proRouter.get("/",async(req,res)=>{
     try {
-        const furn = await ProModel.find()
-        res.status(200).send(furn)
-    } catch (error) {
-        res.status(400).send({"msg":error.message})
-    }
+        const { price } = req.query;
+        const filter = price ? { cost: { $lt: price } } : {};
+        const furn = await ProModel.find(filter);
+        res.status(200).send(furn);
+      } catch (error) {
+        res.status(400).send({ msg: error.message });
+      }
 })
 
 module.exports = {proRouter}
