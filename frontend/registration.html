@@ -27,7 +27,10 @@
           
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="./registration.html"><img src="https://img.icons8.com/ios/1x/user.png" alt="person" height="24"></a>
+                <a class="nav-link" aria-current="page" href="./registration.html"><img src="https://img.icons8.com/ios/1x/user.png" alt="person" height="24" id="login"></a>
+              </li>
+              <li class="nav-item">
+                <button style="margin-top: 2%;display: none; color: white; background-color: transparent; border-color: white;" id="logout">logout</button>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./"><img src="https://img.icons8.com/ios/256/hearts--v1.png" alt="wish" height="24"></a>
@@ -193,7 +196,7 @@
         })
         .then((res)=>res.json())
         .then(res => {
-  console.log(res.status);
+  console.log(res);
   if (res.msg === "User is registered") {
     spinner.style.display = "none"
     // show the success message
@@ -213,6 +216,7 @@
     setTimeout(() => {
       successDialog.remove();
     }, 3000);
+ 
   }
 })
 
@@ -234,6 +238,7 @@
 
 
     //Login
+    let login = document.getElementById("login")
     let logForm = document.getElementById("log")
     let email = document.getElementById("email")
     let password = document.getElementById("password")
@@ -293,6 +298,9 @@
   }
   localStorage.clear()
   localStorage.setItem("token",res.token)
+  login.style.display = "none"
+  document.getElementById("logout").style.display = "block"
+  
 })
 
         .catch(err=>console.log(err))
@@ -302,6 +310,13 @@
 
     close.addEventListener("click",()=>{
     document.getElementById("error").style.display = "none";
+   })
+
+   document.getElementById("logout").addEventListener("click",()=>{
+    localStorage.clear()
+   
+  document.getElementById("logout").style.display = "none"
+  login.style.display = "block"
    })
 </script>
 </html>
