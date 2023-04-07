@@ -27,7 +27,10 @@
           
             <ul class="navbar-nav ms-auto">
               <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="./registration.html"><img src="https://img.icons8.com/ios/1x/user.png" alt="person" height="24"></a>
+                <a class="nav-link" aria-current="page" href="./registration.html"><img src="https://img.icons8.com/ios/1x/user.png" alt="person" height="24" id="login"></a>
+              </li>
+              <li class="nav-item">
+                <button style="margin-top: 2%;display: none; color: white; background-color: transparent; border-color: white;" id="logout">logout</button>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="./"><img src="https://img.icons8.com/ios/256/hearts--v1.png" alt="wish" height="24"></a>
@@ -88,7 +91,7 @@
               <hr>
               <p><span class="left">Total Bill:</span><span class="right" id="bill"></span></p>
               <br>
-              <button id="check">CheckOut</button>
+              <button id="check">proceed to checkout</button>
               <p style="color: #660033;">*Discount on purchase above 2 Lacs, *Shipping and Worker Charges extra</p>
              
 
@@ -176,13 +179,7 @@
   let mod = document.getElementById("mod")
 
   btn.addEventListener("click",()=>{
-    modal.style.display="block"
-   
-    
-    setTimeout(() => {
-      modal.style.display="none"
-      
-    }, 2000);
+     location.href = "./checkout.html"
   })
 
 
@@ -377,6 +374,20 @@ bill.innerText = `₹ ${bil}/-`;
  
      
   }
+  if(localStorage.length>0){
+    document.getElementById("logout").style.display = "block"
+    document.getElementById("logout").style.border = "1px solid white"
+   
+    document.getElementById("logout").style.marginRight= "1.2%"
+    document.getElementById("login").style.display = "none"
+  }
+  document.getElementById("logout").addEventListener("click",()=>{
+    console.log("click")
+    localStorage.clear()
+   
+  document.getElementById("logout").style.display = "none"
+  login.style.display = "block"
+   })
 
 </script>
 </html>
