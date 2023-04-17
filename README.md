@@ -2,7 +2,8 @@
 # FurnStock
    FurnStock is an e-commerce website i developed as an individual project during our construct week. It has a homepage, a product page,a registration page ,a cart Section and a checkout page mainly the roadmap of which is provided below. A user can signUp first which stores the user in the database and using the email and password the user can then login to their account. The website is deployed in netlify. The server is deployed in cyclic.sh.
 
-
+## Deployed Link 
+<a href="https://grand-faun-d598b5.netlify.app/">Deployed Link</a>
 
 
 ## Author
